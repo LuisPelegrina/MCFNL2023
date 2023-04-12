@@ -23,15 +23,21 @@ e[0]= 0.0
 e[-1]= 0.0
 
 eps = np.ones(x.shape)
-eps[x>=L/2] =4.0
+eps[x>=L/2] = 4.0
+
+sigma = np.zeros(x.shape)
+sigma[x>L/2] = 0.5
 
 h= np.zeros(xDual.shape)
 hNew=np.zeros(xDual.shape)
 dt= CFL * dx / c0
 tRange= np.arange(0,100,dt)
 
+alpha = np.ones(x.shape)
+alpha[:] = sigma[:]/2 + eps[:]/dt
+
 for t in tRange:
-    eNew[1:-1] = (-dt / (dx * eps[1:-1]))*(h[1:] - h[:-1]) + e[1:-1]
+    eNew[1:-1] = -e[1:-1] * (sigma[1:-1]/2 - eps[1:-1]/dt) / alpha[1:-1] - 1/( alpha[1:-1]*dx)  *(h[1:] - h[:-1]) 
     hNew[:] = (-dt / (dx*mu))*(eNew[1:] - eNew[:-1]) +h[:]
     e[1:-1] = eNew[1:-1]
     h[:] = hNew[:]

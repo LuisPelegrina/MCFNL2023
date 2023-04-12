@@ -15,5 +15,5 @@ for t in tRange:
     plt.grid()
     plt.ylim(-0.1,1.1)
     plt.xlim(x[0],x[-1])
-    plt.pause(0.1)
+    plt.pause(0.01)
     plt.cla()
