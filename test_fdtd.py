@@ -2,10 +2,10 @@ import pytest
 import numpy as np
 import matplotlib.pyplot as plt
 
-import fdtd
+import fdtd_Ant
 
 def test_pec_box():
-    fd = fdtd.FDTD_Maxwell_1D()
+    fd = fdtd_Ant.FDTD_Maxwell_1D()
             
     x0 = 3.0; s0 = 0.75
     initialField = np.exp(-(fd.x - x0)**2 / (2*s0**2))
@@ -34,7 +34,7 @@ def test_error():
     for CFL in np.array([0.25, 0.5, 0.75, 1.0]):
         for i in range(len(NxRange)):
 
-            fd = fdtd.FDTD_Maxwell_1D(CFL=CFL, Nx=NxRange[i])
+            fd = fdtd_Ant.FDTD_Maxwell_1D(CFL=CFL, Nx=NxRange[i])
             
             x0 = 3.0; s0 = 0.75
             initialField = np.exp(-(fd.x - x0)**2 / (2*s0**2))
