@@ -33,8 +33,10 @@ tRange= np.arange(0,100,dt)
 for t in tRange:
     eNew[1:-1] = (-dt / (dx * eps[1:-1]))*(h[1:] - h[:-1]) + e[1:-1]
 
-    eNew[0] = e[0] - 2 * dt / dx / eps[0] * h[0] 
-    eNew[-1] = e[-1] + 2 * dt / dx / eps[-1] * h[-1] 
+    e[:] = eNew[:]
+
+    eNew[0] = (-dt / (dx * eps[0]))*(h[0] - h[-1]) + e[0]
+    eNew[-1] = e[0]
 
     e[:] = eNew[:]
 
