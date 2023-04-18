@@ -2,10 +2,10 @@ import pytest
 import numpy as np
 import matplotlib.pyplot as plt
 
-import fdtd_Ant
+import fdtd
 
 def test_pec_box():
-    fd = fdtd_Ant.FDTD_Maxwell_1D()
+    fd = fdtd.FDTD_Maxwell_1D()
             
     x0 = 3.0; s0 = 0.75
     initialField = np.exp(-(fd.x - x0)**2 / (2*s0**2))
